@@ -23,7 +23,7 @@ import java.util.UUID;
 public class Group extends AbstractEntity {
 
     @Column(name = "group_name")
-    private String groupname;
+    private String groupName;
 
     @Column(name = "motto")
     private String motto;
@@ -32,9 +32,9 @@ public class Group extends AbstractEntity {
     @Column(name = "logo")
     private String logo;
 
-    public Group(UUID id, String groupname, String motto, String logo) {
+    public Group(UUID id, String groupName, String motto, String logo) {
         super(id);
-        this.groupname = groupname;
+        this.groupName = groupName;
         this.motto = motto;
         this.logo = logo;
     }

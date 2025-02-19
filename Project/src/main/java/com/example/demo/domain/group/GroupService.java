@@ -1,4 +1,8 @@
 package com.example.demo.domain.group;
 
-public interface GroupService {
+import com.example.demo.core.generic.AbstractService;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface GroupService extends AbstractService<Group> {
 }
