@@ -1,9 +1,12 @@
 package com.example.demo.domain.user.dto;
 
 import com.example.demo.core.generic.AbstractDTO;
+import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.role.dto.RoleDTO;
 import java.util.Set;
 import java.util.UUID;
+
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
@@ -27,12 +30,16 @@ public class UserDTO extends AbstractDTO {
   @Valid
   private Set<RoleDTO> roles;
 
-  public UserDTO(UUID id, String firstName, String lastName, String email, Set<RoleDTO> roles) {
+  @Nullable
+  private GroupDTO groupDTO;
+
+  public UserDTO(UUID id, String firstName, String lastName, String email, Set<RoleDTO> roles, GroupDTO groupDTO) {
     super(id);
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.roles = roles;
+    this.groupDTO = groupDTO;
   }
 
 }

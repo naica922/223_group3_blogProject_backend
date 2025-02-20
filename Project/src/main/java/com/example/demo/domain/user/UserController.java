@@ -1,5 +1,6 @@
 package com.example.demo.domain.user;
 
+import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.user.dto.UserDTO;
 import com.example.demo.domain.user.dto.UserMapper;
 import com.example.demo.domain.user.dto.UserRegisterDTO;

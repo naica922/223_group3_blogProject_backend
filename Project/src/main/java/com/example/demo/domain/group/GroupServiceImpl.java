@@ -2,6 +2,7 @@ package com.example.demo.domain.group;
 
 import com.example.demo.core.generic.AbstractRepository;
 import com.example.demo.core.generic.AbstractServiceImpl;
+import com.example.demo.domain.group.dto.GroupDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

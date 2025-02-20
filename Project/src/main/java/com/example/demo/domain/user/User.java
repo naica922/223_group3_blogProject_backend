@@ -38,7 +38,7 @@ public class User extends AbstractEntity {
              inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
   private Set<Role> roles = new HashSet<>();
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.REMOVE) //user shouldnt get deleted
   @JoinColumn(name = "group_id", referencedColumnName = "id")
   private Group group;
 
