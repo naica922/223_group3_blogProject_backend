@@ -2,15 +2,13 @@ package com.example.demo.domain.group;
 
 import com.example.demo.core.generic.AbstractEntity;
 import com.example.demo.domain.user.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -32,11 +30,15 @@ public class Group extends AbstractEntity {
     @Column(name = "logo")
     private String logo;
 
-    public Group(UUID id, String groupName, String motto, String logo) {
+    @OneToMany(mappedBy = "group")
+    private List<User> members;
+
+    public Group(UUID id, String groupName, String motto, String logo, List<User> members) {
         super(id);
         this.groupName = groupName;
         this.motto = motto;
         this.logo = logo;
+        this.members = members;
     }
 
 }

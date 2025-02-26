@@ -30,7 +30,7 @@ public class UserDTO extends AbstractDTO {
   @Valid
   private Set<RoleDTO> roles;
 
-  @Nullable
+  @Valid
   private GroupDTO groupDTO;
 
   public UserDTO(UUID id, String firstName, String lastName, String email, Set<RoleDTO> roles, GroupDTO groupDTO) {

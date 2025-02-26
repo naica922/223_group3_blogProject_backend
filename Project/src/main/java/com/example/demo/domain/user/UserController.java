@@ -47,6 +47,12 @@ public class UserController {
     return new ResponseEntity<>(userMapper.toDTOs(users), HttpStatus.OK);
   }
 
+  @GetMapping("/group/{id}")
+  public ResponseEntity<List<UserDTO>> retrieveByGroupId(@PathVariable UUID id) {
+    List<User> users = userService.getByGroupId(id);
+    return new ResponseEntity<>(userMapper.toDTOs(users), HttpStatus.OK);
+  }
+
   @PostMapping("/register")
   public ResponseEntity<UserDTO> register(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
     User user = userService.register(userMapper.fromUserRegisterDTO(userRegisterDTO));
