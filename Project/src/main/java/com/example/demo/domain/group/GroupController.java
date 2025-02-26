@@ -4,6 +4,7 @@ import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.group.dto.GroupMapper;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
+import com.example.demo.domain.user.dto.UserDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,15 +44,10 @@ public class GroupController {
 
     @GetMapping({"", "/"})
     @PreAuthorize("hasAuthority('GROUP_READ')")
-    public ResponseEntity<List<GroupDTO>> retrieveGroupByUser(@AuthenticationPrincipal UserDetails userDetails) {
-        System.out.println(userDetails.getAuthorities());
-        System.out.println(userDetails.getUsername());
-        if (userDetails.getAuthorities().contains("GROUP_READ_ALL")) {
-            return new ResponseEntity<>(groupMapper.toDTOs(groupService.findAll()), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(groupMapper.toDTOs(groupService.findAll()), HttpStatus.OK);
+    public ResponseEntity<List<GroupDTO>> retrieveGroupByUser(@AuthenticationPrincipal User principal) {
+        return new ResponseEntity<>(groupMapper.toDTOs(List.of(principal.getGroup())), HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('GROUP_READ_ALL') || @userPermissionEvaluator.isMember(authentication.principal.user, #id)")
     public ResponseEntity<GroupDTO> retrieveById(@PathVariable UUID id) {
@@ -63,6 +59,7 @@ public class GroupController {
     @PreAuthorize("hasAuthority('GROUP_MODIFY')")
     public ResponseEntity<Group> create(@Valid @RequestBody GroupDTO groupDTO) {
         Group group = groupService.save(groupMapper.fromDTO(groupDTO));
+
         return ResponseEntity.ok().body(group);
     }
 

@@ -30,7 +30,7 @@ public class Group extends AbstractEntity {
     @Column(name = "logo")
     private String logo;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.MERGE)
     private List<User> members;
 
     public Group(UUID id, String groupName, String motto, String logo, List<User> members) {

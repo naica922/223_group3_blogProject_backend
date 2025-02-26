@@ -30,16 +30,12 @@ public class UserDTO extends AbstractDTO {
   @Valid
   private Set<RoleDTO> roles;
 
-  @Valid
-  private GroupDTO groupDTO;
-
-  public UserDTO(UUID id, String firstName, String lastName, String email, Set<RoleDTO> roles, GroupDTO groupDTO) {
+  public UserDTO(UUID id, String firstName, String lastName, String email, Set<RoleDTO> roles) {
     super(id);
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.roles = roles;
-    this.groupDTO = groupDTO;
   }
 
 }

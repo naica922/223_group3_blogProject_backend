@@ -26,10 +26,6 @@ public class UserPermissionEvaluator {
     return true;
   }
 
-  public boolean hasAdmin(User principal) {
-    return true;
-  }
-
   public boolean isMember(User principal, UUID id) {
     Optional<Group> group = groupRepository.findById(id);
     Optional<User> user = userRepository.findById(principal.getId());
