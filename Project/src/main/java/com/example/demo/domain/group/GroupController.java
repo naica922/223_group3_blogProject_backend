@@ -2,6 +2,7 @@ package com.example.demo.domain.group;
 
 import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.group.dto.GroupMapper;
+import com.example.demo.domain.role.Role;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
 import jakarta.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Validated
@@ -46,11 +48,13 @@ public class GroupController {
 
     @GetMapping({"", "/"})
     @PreAuthorize("hasAuthority('GROUP_READ')")
-    public ResponseEntity<List<GroupDTO>> retrieveUserIsMember(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<GroupDTO> retrieveUserIsMember(@AuthenticationPrincipal UserDetails userDetails) {
         log.info("Get groups user is part of, empty for admin");
         User user = userService.getByUsername(userDetails.getUsername());
-        List<Group> group = List.of(user.getGroup());
-        return new ResponseEntity<>(groupMapper.toDTOs(group), HttpStatus.OK);
+        Set<Role> role = user.getRoles();
+
+        Group group = user.getGroup();
+        return new ResponseEntity<>(groupMapper.toDTO(group), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
