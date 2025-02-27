@@ -2,6 +2,7 @@ package com.example.demo.domain.user;
 
 import com.example.demo.domain.user.dto.UserDTO;
 import com.example.demo.domain.user.dto.UserMapper;
+import com.example.demo.domain.user.dto.UserRegisterDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
