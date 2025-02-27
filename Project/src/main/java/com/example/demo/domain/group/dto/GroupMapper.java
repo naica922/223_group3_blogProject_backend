@@ -1,11 +1,11 @@
-package com.example.demo.domain.user.dto;
+package com.example.demo.domain.group.dto;
 
 import com.example.demo.core.generic.AbstractMapper;
-import com.example.demo.domain.user.User;
+import com.example.demo.domain.group.Group;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface UserMapper extends AbstractMapper<User, UserDTO> {
-  User fromUserRegisterDTO(UserRegisterDTO dto);
+public interface GroupMapper extends AbstractMapper<Group, GroupDTO> {
+
 }

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -30,10 +30,17 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
   }
 
   @Override
+  public User getByUsername(String email) {
+    Optional<User> user = ((UserRepository) repository).findByEmail(email);
+    return user.get();
+  }
+
+  @Override
   public User register(User user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     return save(user);
   }
+
   @Override
   //This Method can be used for development and testing. the Password for the user will be set to "1234"
   public User registerUser(User user){

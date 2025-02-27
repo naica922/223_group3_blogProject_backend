@@ -12,6 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "users")
@@ -38,17 +40,19 @@ public class User extends AbstractEntity {
              inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
   private Set<Role> roles = new HashSet<>();
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "group_id", referencedColumnName = "id")
+  @OnDelete(action = OnDeleteAction.SET_NULL)
   private Group group;
 
-  public User(UUID id, String firstName, String lastName, String email, String password, Set<Role> roles) {
+  public User(UUID id, String firstName, String lastName, String email, String password, Set<Role> roles, Group group) {
     super(id);
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
     this.roles = roles;
+    this.group = group;
   }
 
 }
