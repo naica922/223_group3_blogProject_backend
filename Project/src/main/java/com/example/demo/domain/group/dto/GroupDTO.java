@@ -18,9 +18,13 @@ import java.util.UUID;
 public class GroupDTO extends AbstractDTO {
 
     private String groupName;
+
     private String motto;
+
     private String logo;
+
     private List<UserDTO> members;
+
     public GroupDTO(UUID id, String groupName, String motto, String logo, List<UserDTO> members) {
         super(id);
         this.groupName = groupName;

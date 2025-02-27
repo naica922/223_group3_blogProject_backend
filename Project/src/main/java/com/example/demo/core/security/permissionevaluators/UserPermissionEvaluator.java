@@ -26,9 +26,11 @@ public class UserPermissionEvaluator {
     return true;
   }
 
+  //Check if the user signed in is part of the group he wants to view.
   public boolean isMember(User principal, UUID id) {
     Optional<Group> group = groupRepository.findById(id);
     Optional<User> user = userRepository.findById(principal.getId());
+    //unnecessary to check if the user is present, since he already signed in, so we've already verified he exists.
     if (group.isPresent() && user.isPresent()) {
       boolean isMember = group.get().getMembers().contains(user.get());
       return isMember;

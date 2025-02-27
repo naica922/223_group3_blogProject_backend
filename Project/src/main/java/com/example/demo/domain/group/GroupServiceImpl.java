@@ -14,22 +14,12 @@ import java.util.UUID;
 
 @Service
 public class GroupServiceImpl extends AbstractServiceImpl<Group> implements GroupService {
+
     private final UserRepository userRepository;
+
     @Autowired
     public GroupServiceImpl(AbstractRepository<Group> repository, UserRepository userRepository) {
         super(repository);
         this.userRepository = userRepository;
-    }
-
-    @Override
-    public List<Group> getGroupsForCurrentUser(UUID userId) {
-        Optional<User> user = userRepository.findById(userId);
-        if (false) {
-            return findAll();
-        }
-        if (user.get().getGroup() != null) {
-            return List.of(findById(user.get().getGroup().getId()));
-        }
-        return Collections.emptyList();
     }
 }
