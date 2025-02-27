@@ -8,6 +8,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface GroupService extends AbstractService<Group> {
-    List<Group> getGroupsForCurrentUser(UUID userId);
 
 }

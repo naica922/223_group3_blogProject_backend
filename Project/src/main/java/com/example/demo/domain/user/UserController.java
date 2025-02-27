@@ -40,7 +40,13 @@ public class UserController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity<UserDTO> register(@Valid @RequestBody UserDTO userDTO) {
+  public ResponseEntity<UserDTO> register(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
+    User user = userService.register(userMapper.fromUserRegisterDTO(userRegisterDTO));
+    return new ResponseEntity<>(userMapper.toDTO(user), HttpStatus.CREATED);
+  }
+
+  @PostMapping("/registerUser")
+  public ResponseEntity<UserDTO> registerWithoutPassword(@Valid @RequestBody UserDTO userDTO) {
     User user = userService.registerUser(userMapper.fromDTO(userDTO));
     return new ResponseEntity<>(userMapper.toDTO(user), HttpStatus.CREATED);
   }

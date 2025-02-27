@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface UserService extends UserDetailsService, AbstractService<User> {
+
   User register(User user);
 
   User registerUser(User user);
