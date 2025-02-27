@@ -32,9 +32,4 @@ public class GroupServiceImpl extends AbstractServiceImpl<Group> implements Grou
         }
         return Collections.emptyList();
     }
-
-    @Override
-    public List<Group> getGroupByUserId(UUID id) {
-        return null;
-    }
 }

@@ -4,7 +4,6 @@ import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.group.dto.GroupMapper;
 import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.UserService;
-import com.example.demo.domain.user.dto.UserDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,8 +43,10 @@ public class GroupController {
 
     @GetMapping({"", "/"})
     @PreAuthorize("hasAuthority('GROUP_READ')")
-    public ResponseEntity<List<GroupDTO>> retrieveGroupByUser(@AuthenticationPrincipal User principal) {
-        return new ResponseEntity<>(groupMapper.toDTOs(List.of(principal.getGroup())), HttpStatus.OK);
+    public ResponseEntity<List<GroupDTO>> retrieveGroupByUser(@AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.getByUsername(userDetails.getUsername());
+        List<Group> group = List.of(user.getGroup());
+        return new ResponseEntity<>(groupMapper.toDTOs(group), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -57,10 +58,12 @@ public class GroupController {
 
     @PostMapping("/")
     @PreAuthorize("hasAuthority('GROUP_MODIFY')")
-    public ResponseEntity<Group> create(@Valid @RequestBody GroupDTO groupDTO) {
+    public ResponseEntity<GroupDTO> create(@Valid @RequestBody GroupDTO groupDTO) {
         Group group = groupService.save(groupMapper.fromDTO(groupDTO));
-
-        return ResponseEntity.ok().body(group);
+        for (User user : group.getMembers()) {
+            userService.updateById(user.getId(), user.setGroup(group));
+        }
+        return ResponseEntity.ok().body(groupMapper.toDTO(group));
     }
 
     @PutMapping("{id}")

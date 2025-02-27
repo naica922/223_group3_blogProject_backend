@@ -11,6 +11,6 @@ public interface UserService extends UserDetailsService, AbstractService<User> {
 
   User registerUser(User user);
 
-  List<User> getByGroupId(UUID id);
+  User getByUsername(String email);
 
 }

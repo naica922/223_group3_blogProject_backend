@@ -7,10 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -33,6 +30,12 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
   }
 
   @Override
+  public User getByUsername(String email) {
+    Optional<User> user = ((UserRepository) repository).findByEmail(email);
+    return user.get();
+  }
+
+  @Override
   public User register(User user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     return save(user);
@@ -42,15 +45,6 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
   public User registerUser(User user){
     user.setPassword(passwordEncoder.encode("1234"));
     return save(user);
-  }
-
-  @Override
-  public List<User> getByGroupId(UUID id) {
-    return ((UserRepository) repository).findByGroup_Id(id).orElseThrow(() -> new NoSuchElementException());
-  }
-
-  public boolean isAdmin(UUID id) {
-    return true;
   }
 
   public Stream<Character> getRandomSpecialChars(int count) {
