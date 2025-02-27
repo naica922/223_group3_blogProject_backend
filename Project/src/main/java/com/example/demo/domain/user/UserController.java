@@ -1,25 +1,17 @@
 package com.example.demo.domain.user;
 
-import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.user.dto.UserDTO;
 import com.example.demo.domain.user.dto.UserMapper;
-import com.example.demo.domain.user.dto.UserRegisterDTO;
-import java.util.List;
-import java.util.UUID;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Validated
 @RestController
@@ -48,15 +40,11 @@ public class UserController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity<UserDTO> register(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
-    User user = userService.register(userMapper.fromUserRegisterDTO(userRegisterDTO));
-    return new ResponseEntity<>(userMapper.toDTO(user), HttpStatus.CREATED);
-  }
-  @PostMapping("/registerUser")
-  public ResponseEntity<UserDTO> registerWithoutPassword(@Valid @RequestBody UserDTO userDTO) {
+  public ResponseEntity<UserDTO> register(@Valid @RequestBody UserDTO userDTO) {
     User user = userService.registerUser(userMapper.fromDTO(userDTO));
     return new ResponseEntity<>(userMapper.toDTO(user), HttpStatus.CREATED);
   }
+
   @PutMapping("/{id}")
   @PreAuthorize("hasAuthority('USER_MODIFY') && @userPermissionEvaluator.exampleEvaluator(authentication.principal.user,#id)")
   public ResponseEntity<UserDTO> updateById(@PathVariable UUID id, @Valid @RequestBody UserDTO userDTO) {
@@ -69,5 +57,13 @@ public class UserController {
   public ResponseEntity<Void> deleteById(@PathVariable UUID id) {
     userService.deleteById(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
+  // NEW: Get all users who are not in a group
+  @GetMapping("/users-without-group")
+  @PreAuthorize("hasAuthority('USER_READ_ALL')")
+  public ResponseEntity<List<UserDTO>> getUsersWithoutGroup() {
+    List<User> users = userService.getUsersWithoutGroup();
+    return ResponseEntity.ok(userMapper.toDTOs(users));
   }
 }

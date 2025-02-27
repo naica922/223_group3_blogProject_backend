@@ -13,4 +13,6 @@ public interface UserService extends UserDetailsService, AbstractService<User> {
 
   User getByUsername(String email);
 
+  // NEW: Fetch users without a group
+  List<User> getUsersWithoutGroup();
 }

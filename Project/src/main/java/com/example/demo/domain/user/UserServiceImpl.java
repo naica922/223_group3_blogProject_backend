@@ -15,24 +15,25 @@ import java.util.stream.Stream;
 public class UserServiceImpl extends AbstractServiceImpl<User> implements UserService {
 
   private final PasswordEncoder passwordEncoder;
+  private final UserRepository userRepository; // Add this
 
   @Autowired
   public UserServiceImpl(UserRepository repository, PasswordEncoder passwordEncoder) {
     super(repository);
     this.passwordEncoder = passwordEncoder;
+    this.userRepository = repository; // Assign repository to userRepository
   }
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    return ((UserRepository) repository).findByEmail(email)
-                                        .map(UserDetailsImpl::new)
-                                        .orElseThrow(() -> new UsernameNotFoundException(email));
+    return userRepository.findByEmail(email)
+            .map(UserDetailsImpl::new)
+            .orElseThrow(() -> new UsernameNotFoundException(email));
   }
 
   @Override
   public User getByUsername(String email) {
-    Optional<User> user = ((UserRepository) repository).findByEmail(email);
-    return user.get();
+    return userRepository.findByEmail(email).orElseThrow();
   }
 
   @Override
@@ -40,11 +41,16 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     return save(user);
   }
+
   @Override
-  //This Method can be used for development and testing. the Password for the user will be set to "1234"
-  public User registerUser(User user){
+  public User registerUser(User user) {
     user.setPassword(passwordEncoder.encode("1234"));
     return save(user);
+  }
+
+  @Override
+  public List<User> getUsersWithoutGroup() {
+    return userRepository.findByGroupIsNull(); // Fix: Implements missing method
   }
 
   public Stream<Character> getRandomSpecialChars(int count) {
@@ -52,5 +58,4 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
     IntStream specialChars = random.ints(count, 33, 45);
     return specialChars.mapToObj(data -> (char) data);
   }
-
 }
