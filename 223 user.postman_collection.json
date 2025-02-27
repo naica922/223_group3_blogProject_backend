@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "7f681c91-69cf-493b-a9f7-d64dee926173",
+		"name": "223 user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33311348"
+	},
+	"item": [
+		{
+			"name": "groups/",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "groups/all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUl9ERUxFVEUifSx7ImF1dGhvcml0eSI6IkdST1VQX1JFQUQifV0sInN1YiI6IjgzZWJlMTRiLTYxZDItNDFiOS1iZjYxLTIxZjJmMTg3OGFiMiIsImlhdCI6MTc0MDU4MTE1NywiZXhwIjoxNzQwNjgxMTU3LCJpc3MiOiJ1azIyMyJ9.DpL9WA0Pcz7p24dl9vhUBfsT7IO3Xfzlbspy3TsZeR_pmS5toh-QnoRPJ3C8xFGk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/groups/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "groups/id-isMember",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUl9ERUxFVEUifSx7ImF1dGhvcml0eSI6IkdST1VQX1JFQUQifV0sInN1YiI6IjgzZWJlMTRiLTYxZDItNDFiOS1iZjYxLTIxZjJmMTg3OGFiMiIsImlhdCI6MTc0MDU4MTE1NywiZXhwIjoxNzQwNjgxMTU3LCJpc3MiOiJ1azIyMyJ9.DpL9WA0Pcz7p24dl9vhUBfsT7IO3Xfzlbspy3TsZeR_pmS5toh-QnoRPJ3C8xFGk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/groups/f0dd614f-649b-4207-a347-b5ba8c9085fb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"f0dd614f-649b-4207-a347-b5ba8c9085fb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "groups/id-notMember",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUl9ERUxFVEUifSx7ImF1dGhvcml0eSI6IkdST1VQX1JFQUQifV0sInN1YiI6IjgzZWJlMTRiLTYxZDItNDFiOS1iZjYxLTIxZjJmMTg3OGFiMiIsImlhdCI6MTc0MDU4MTE1NywiZXhwIjoxNzQwNjgxMTU3LCJpc3MiOiJ1azIyMyJ9.DpL9WA0Pcz7p24dl9vhUBfsT7IO3Xfzlbspy3TsZeR_pmS5toh-QnoRPJ3C8xFGk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/groups/1564c438-a838-47a4-9515-93561d930d7d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"1564c438-a838-47a4-9515-93561d930d7d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "groups_create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUl9ERUxFVEUifSx7ImF1dGhvcml0eSI6IkdST1VQX1JFQUQifV0sInN1YiI6IjgzZWJlMTRiLTYxZDItNDFiOS1iZjYxLTIxZjJmMTg3OGFiMiIsImlhdCI6MTc0MDU4MTE1NywiZXhwIjoxNzQwNjgxMTU3LCJpc3MiOiJ1azIyMyJ9.DpL9WA0Pcz7p24dl9vhUBfsT7IO3Xfzlbspy3TsZeR_pmS5toh-QnoRPJ3C8xFGk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": \"f0dd614f-649b-4207-a347-b5ba8c9085fb\",\r\n        \"groupName\": \"new team\",\r\n        \"motto\": \"new\",\r\n        \"logo\": \"img.png\",\r\n        \"members\": [\r\n            {\r\n                \"id\": \"83ebe14b-61d2-41b9-bf61-21f2f1878ab2\",\r\n                \"firstName\": \"Forest\",\r\n                \"lastName\": \"Gump\",\r\n                \"email\": \"user2@example.com\",\r\n                \"roles\": [\r\n                    {\r\n                        \"id\": \"c6aee32d-8c35-4481-8b3e-a876a39b0c02\",\r\n                        \"name\": \"USER\",\r\n                        \"authorities\": [\r\n                            {\r\n                                \"id\": \"21c942db-a275-43f8-bdd6-d048c21bf5ab\",\r\n                                \"name\": \"USER_DELETE\"\r\n                            },\r\n                            {\r\n                                \"id\": \"e0e8fdca-6f92-440c-ac82-da90c8f6eef8\",\r\n                                \"name\": \"GROUP_READ\"\r\n                            }\r\n                        ]\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/groups/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "groups_update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUl9ERUxFVEUifSx7ImF1dGhvcml0eSI6IkdST1VQX1JFQUQifV0sInN1YiI6IjgzZWJlMTRiLTYxZDItNDFiOS1iZjYxLTIxZjJmMTg3OGFiMiIsImlhdCI6MTc0MDU4MTE1NywiZXhwIjoxNzQwNjgxMTU3LCJpc3MiOiJ1azIyMyJ9.DpL9WA0Pcz7p24dl9vhUBfsT7IO3Xfzlbspy3TsZeR_pmS5toh-QnoRPJ3C8xFGk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"1564c438-a838-47a4-9515-93561d930d7d\",\r\n    \"groupName\": \"updated tiger\",\r\n    \"motto\": \"updated\",\r\n    \"logo\": \"img.png\",\r\n    \"members\": [\r\n        {\r\n            \"id\": \"83ebe14b-61d2-41b9-bf61-21f2f1878ab2\",\r\n            \"firstName\": \"Forest\",\r\n            \"lastName\": \"Gump\",\r\n            \"email\": \"user2@example.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": \"c6aee32d-8c35-4481-8b3e-a876a39b0c02\",\r\n                    \"name\": \"USER\",\r\n                    \"authorities\": [\r\n                        {\r\n                            \"id\": \"21c942db-a275-43f8-bdd6-d048c21bf5ab\",\r\n                            \"name\": \"USER_DELETE\"\r\n                        },\r\n                        {\r\n                            \"id\": \"e0e8fdca-6f92-440c-ac82-da90c8f6eef8\",\r\n                            \"name\": \"GROUP_READ\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/groups/1564c438-a838-47a4-9515-93561d930d7d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"1564c438-a838-47a4-9515-93561d930d7d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "groups_delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUl9ERUxFVEUifSx7ImF1dGhvcml0eSI6IkdST1VQX1JFQUQifV0sInN1YiI6IjgzZWJlMTRiLTYxZDItNDFiOS1iZjYxLTIxZjJmMTg3OGFiMiIsImlhdCI6MTc0MDU4MTE1NywiZXhwIjoxNzQwNjgxMTU3LCJpc3MiOiJ1azIyMyJ9.DpL9WA0Pcz7p24dl9vhUBfsT7IO3Xfzlbspy3TsZeR_pmS5toh-QnoRPJ3C8xFGk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/groups/1564c438-a838-47a4-9515-93561d930d7d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"1564c438-a838-47a4-9515-93561d930d7d"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
