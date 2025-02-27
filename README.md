@@ -10,6 +10,12 @@ Giulia, Naima, Andrin
 
 #### Projekt Dokumentation: 
 https://github.com/naica922/223_group3_blogProject_backend/tree/main/Documentation
+##### Swagger
+http://localhost:8080/swagger-ui/index.html#/
+<img width="750" alt="image" src="https://github.com/user-attachments/assets/bd217721-601b-46d1-88b9-1e778828ffcc" />
+<img width="750" alt="image" src="https://github.com/user-attachments/assets/28eabc98-22de-4f2a-91b0-759366593cc6" />
+
+
 
 ## Beschreibung:
 Dieses Projekt wurde von Giulia, Naima und Andrin im Rahmen vom üK 223 Multiuser Fullstack Application ersrellt. Das Projekt ist eine Blog Seite mit der Individuellen Entity "Groups". <br>
