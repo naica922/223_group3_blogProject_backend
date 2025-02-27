@@ -46,13 +46,13 @@ public class GroupController {
         return new ResponseEntity<>(groupMapper.toDTOs(groupService.findAll()), HttpStatus.OK);
     }
 
+    //endpoint accessible for admin or member of group
     @GetMapping({"", "/"})
     @PreAuthorize("hasAuthority('GROUP_READ')")
     public ResponseEntity<GroupDTO> retrieveUserIsMember(@AuthenticationPrincipal UserDetails userDetails) {
         log.info("Get groups user is part of, empty for admin");
         User user = userService.getByUsername(userDetails.getUsername());
         Set<Role> role = user.getRoles();
-
         Group group = user.getGroup();
         return new ResponseEntity<>(groupMapper.toDTO(group), HttpStatus.OK);
     }
@@ -68,6 +68,8 @@ public class GroupController {
     @PostMapping("/")
     @PreAuthorize("hasAuthority('GROUP_MODIFY')")
     public ResponseEntity<GroupDTO> create(@Valid @RequestBody GroupDTO groupDTO) {
+        //logging group since id will be changed when loading into DB
+        log.info("creating new group " + groupDTO.getGroupName());
         Group group = groupService.save(groupMapper.fromDTO(groupDTO));
         //Go through the list of members added to the group and individually set the group for every user, due to it not working otherwise.
         for (User user : group.getMembers()) {
@@ -80,10 +82,11 @@ public class GroupController {
     @PutMapping("{id}")
     @PreAuthorize("hasAuthority('GROUP_MODIFY')")
     public ResponseEntity<Group> updateById(@PathVariable UUID id, @Valid @RequestBody GroupDTO groupDTO) {
+        log.info("updating group with id" + groupDTO.getId());
         Group group1 = groupService.updateById(id, groupMapper.fromDTO(groupDTO));
         for (User user : group1.getMembers()) {
             userService.updateById(user.getId(), user.setGroup(group1));
-            log.trace("updating fk group_id for user: " + user.getEmail());
+            log.info("updating fk group_id for user: " + user.getEmail());
         }
         return ResponseEntity.ok().body(group1);
     }
